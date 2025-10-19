@@ -39,10 +39,13 @@ pipeline {
         stage('🚀 Run Ansible Playbook') {
             steps {
                 echo "Running Ansible Playbook on target servers..."
-                sh """
-                    ansible-playbook -i ${ANSIBLE_INVENTORY} ${PLAYBOOK_FILE} \
-                    --ssh-extra-args='-o StrictHostKeyChecking=no'
-                """
+                // Use Jenkins SSH credentials (ID = web_key)
+                sshagent(credentials: ['web_key']) {
+                    sh """
+                        ansible-playbook -i ${ANSIBLE_INVENTORY} ${PLAYBOOK_FILE} \
+                        --ssh-extra-args='-o StrictHostKeyChecking=no'
+                    """
+                }
             }
         }
     }
