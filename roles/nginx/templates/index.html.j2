@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <style>
+      body { 
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        text-align: center;
+        padding-top: 50px;
+      }
+      h1 { color: #0078D4; }
+      p { color: #333; }
+    </style>
+  </head>
+  <body>
+    <h1>Hello Ciena Team!</h1>
+    <p>This page is served from {{ ansible_hostname }} (IP: {{ ansible_default_ipv4.address }})</p>
+    <p>Automated with <b>Ansible</b> and deployed via <b>Jenkins</b>.</p>
+    <p>– Omar Ashraf 🚀</p>
+  </body>
+</html>
