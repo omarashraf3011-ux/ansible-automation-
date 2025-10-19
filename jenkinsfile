@@ -8,16 +8,16 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('📦 Checkout Code') {
             steps {
-                echo "📦 Checking out the repository..."
+                echo "Checking out the repository..."
                 checkout scm
             }
         }
 
-        stage('Install Ansible') {
+        stage('⚙️ Install Ansible') {
             steps {
-                echo "⚙️ Installing Ansible..."
+                echo "Installing Ansible..."
                 sh '''
                     if ! command -v ansible >/dev/null 2>&1; then
                         sudo apt update -y
@@ -29,16 +29,16 @@ pipeline {
             }
         }
 
-        stage('Validate Playbook Syntax') {
+        stage('🧠 Validate Playbook Syntax') {
             steps {
-                echo "🧠 Validating Ansible syntax..."
+                echo "Validating Ansible syntax..."
                 sh "ansible-playbook --syntax-check ${PLAYBOOK_FILE}"
             }
         }
 
-        stage('Run Ansible Playbook') {
+        stage('🚀 Run Ansible Playbook') {
             steps {
-                echo "🚀 Running Ansible Playbook on target servers..."
+                echo "Running Ansible Playbook on target servers..."
                 sh """
                     ansible-playbook -i ${ANSIBLE_INVENTORY} ${PLAYBOOK_FILE} \
                     --ssh-extra-args='-o StrictHostKeyChecking=no'
